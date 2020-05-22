@@ -1,0 +1,37 @@
+
+1) 二值化
+    double cv::threshold(InputArray src, OutputArray dst, double thresh, double maxval, int type)
+
+2) 提取轮廓信息
+    std::vector<std::vector<cv::Point>> contours;
+    std::vector<cv::Vec4i> hierarchy;
+    findContours(morphologyImage, contours, hierarchy, RETR_LIST, CHAIN_APPROX_SIMPLE);
+
+3) 特征分析
+    最小外接矩形:
+        RotatedRect minAreaRect(InputArray points)
+
+        最小正外接矩形:
+            Rect boundingRect(InputArray points)
+
+        最小外接圆:
+            minEnclosingCircle
+
+        轮廓面积:
+            contourArea
+
+        周长:
+            arcLength
+
+        矩:
+            moments
+                m00: 轮廓面积
+
+        凹包:
+            convexHull
+
+        矩形度:
+            轮廓面积/最小外接矩阵面积
+
+        圆度:
+            轮廓面积/最小外接圆面积
