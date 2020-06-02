@@ -1,0 +1,60 @@
+1. 引用-管理Nuget程序包-下载MVVM框架:
+    Caliburn.Micro
+
+2. xaml窗口中添加引用:
+    xmlns:cal="http://www.caliburnproject.org"
+
+3. 创建model类:
+    如: class MainWindowModel {...}, 继承于 Screen 类
+
+4. xaml绑定到mode(调试用):
+    d:DataContext="{d:DesignInstance local:MainWindowModel}"
+
+5. view实例绑定到model(实际绑定):
+    在view的构造函数中,为DataContext添加model实例: 
+    DataContext = new MainWindowModel();
+
+7. 属性绑定
+    前台(*.xaml):
+        <Image Source="{Binding BitmapImage}"/>
+
+    后台(*.cs):
+
+        private BitmapImage _bitmapImage;
+
+        /// <summary>
+        /// 图像
+        /// </summary>
+        public BitmapImage BitmapImage
+        {
+            get { return _bitmapImage; }
+            set { _bitmapImage = value; NotifyOfPropertyChange(() => BitmapImage); }
+        }
+        
+        备注: 一定要加NotifyOfPropertyChange,用于通知前台更新界面; 如果是 IList<> 类型,则要使用 ObservableCollection<>
+
+        
+6. 事件绑定:
+    前台(*.xaml):
+        简写: cal:Message.Attach="XXX"
+        不带参: cal:Message.Attach="[Event Click] = [Action XXX]" 
+        带参: cal:Message.Attach="[Event Click] = [Action XXX(Count.Text)]" 
+        多事件: cm:Message.Attach="[Event MouseEnter] = [Action Show('Enter')]; [Event MouseLeave] = [Action Show('Leave')]"
+
+    后台(*.cs):
+        public void XXX() {...}
+
+6. 事件绑定(传特殊参数):
+    前台(*.xaml):
+        cal:Message.Attach="XXX($source)"
+        $source: 触发控件对象
+        $eventArgs: 触发器的EventArgs 
+        $view: view对象
+        $dataContext: model对象
+
+
+    后台(*.cs):
+        public void XXX(object sender) {...}
+        $source: object sender
+        $eventArgs: EventArgs e
+        其他略
