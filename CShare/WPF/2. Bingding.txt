@@ -30,5 +30,10 @@
 2. Binding资源的格式化
     Text="{Binding XXX, StringFormat={}{0:0.###}}"
 
+3. 控件之间的绑定
+    有:
+        <Canvas x:Name="canvas"/>
 
+    绑定:
+        <Image Width="{Binding ElementName=canvas, Path=ActualWidth}" />
 
