@@ -5,7 +5,7 @@
     xmlns:cal="http://www.caliburnproject.org"
 
 3. 创建model类:
-    如: class MainWindowModel {...}, 继承于 Screen 类
+    如: class MainWindowModel {...}, 继承于 Caliburn.Micro.Screen 类
 
 4. xaml绑定到mode(调试用):
     d:DataContext="{d:DesignInstance local:MainWindowModel}"
@@ -58,3 +58,21 @@
         $source: object sender
         $eventArgs: EventArgs e
         其他略
+
+6. 事件绑定(传枚举)
+    前台(*.xaml):
+        cal:Message.Attach="SlecteShapeMode('Line')"
+
+    后台:
+        public enum ShapeType
+        {
+            Null,
+            Line,
+            Circle,
+            Rectangle
+        }
+
+        public void SlecteShapeMode(ShapeType shape)
+        {
+            ShapeType = shape;
+        }

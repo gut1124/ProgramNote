@@ -37,3 +37,13 @@
     绑定:
         <Image Width="{Binding ElementName=canvas, Path=ActualWidth}" />
 
+4. 转换
+
+    xaml:
+    <Window.Resources>
+        <ResourceDictionary>
+            <local:BoolInvertConverter x:Key="BoolInvertConverter" />
+        </ResourceDictionary>
+    </Window.Resources>
+
+    如果是控件,则将Window.Resources改成UserControl.Resources

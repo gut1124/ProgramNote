@@ -1,0 +1,61 @@
+
+选择时全选并在点击回车时触发MVVM写入
+    <TextBox Text="{Binding AngleStartDeg, StringFormat={}{0:0.###}, UpdateSourceTrigger=Explicit}"
+             KeyDown="TextBox_KeyDown" 
+             PreviewMouseDown="TextBox_PreviewMouseDown"
+             LostFocus="TextBox_LostFocus"
+             GotFocus="TextBox_GotFocus"
+             MinWidth="60" 
+             Margin="0,0,5,0"
+             TextAlignment="Center"
+             VerticalAlignment="Center"/>
+
+
+    后台: 
+        #region 输入栏点击全选功能实现
+
+        private void TextBox_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            var textBox = sender as TextBox;
+            textBox.Focus();
+            e.Handled = true;
+        }
+
+        private void TextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            var textBox = sender as TextBox;
+            textBox.SelectAll();
+            textBox.PreviewMouseDown -= new MouseButtonEventHandler(TextBox_PreviewMouseDown);
+        }
+
+        /// <summary>
+        /// 按下事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                TextBox textBox = sender as TextBox;
+                BindingExpression be = textBox.GetBindingExpression(TextBox.TextProperty);
+                be.UpdateSource();
+            }
+        }
+
+        /// <summary>
+        /// 失去焦点事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            BindingExpression be = textBox.GetBindingExpression(TextBox.TextProperty);
+            be.UpdateSource();
+
+            textBox.PreviewMouseDown += new MouseButtonEventHandler(TextBox_PreviewMouseDown);
+
+        }
+
+        #endregion
