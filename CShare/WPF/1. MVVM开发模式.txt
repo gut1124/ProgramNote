@@ -14,7 +14,7 @@
     在view的构造函数中,为DataContext添加model实例: 
     DataContext = new MainWindowModel();
 
-7. 属性绑定
+6. 属性绑定
     前台(*.xaml):
         <Image Source="{Binding BitmapImage}"/>
 
@@ -34,7 +34,7 @@
         备注: 一定要加NotifyOfPropertyChange,用于通知前台更新界面; 如果是 IList<> 类型,则要使用 ObservableCollection<>
 
         
-6. 事件绑定:
+7. 事件绑定:
     前台(*.xaml):
         简写: cal:Message.Attach="XXX"
         不带参: cal:Message.Attach="[Event Click] = [Action XXX]" 
@@ -44,7 +44,7 @@
     后台(*.cs):
         public void XXX() {...}
 
-6. 事件绑定(传特殊参数):
+7. 事件绑定(传特殊参数):
     前台(*.xaml):
         cal:Message.Attach="XXX($source)"
         $source: 触发控件对象
@@ -59,7 +59,7 @@
         $eventArgs: EventArgs e
         其他略
 
-6. 事件绑定(传枚举)
+7. 事件绑定(传枚举)
     前台(*.xaml):
         cal:Message.Attach="SlecteShapeMode('Line')"
 
@@ -76,3 +76,6 @@
         {
             ShapeType = shape;
         }
+
+补充:
+    针对与ListView之类的控件,需要与IList<>类型的变量绑定,不建议使用List<>数据类型,而应该使用 ObservableCollection<>
