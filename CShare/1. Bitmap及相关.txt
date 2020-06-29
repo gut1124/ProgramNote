@@ -6,4 +6,4 @@
     bitmap.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
     bitmap.CacheOption = BitmapCacheOption.OnLoad;
     bitmap.UriSource = new Uri(fileInfo.FullName, UriKind.RelativeOrAbsolute);
-    bitmap.EndInit();
+    bitmap.EndInit(); 
