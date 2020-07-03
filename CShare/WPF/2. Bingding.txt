@@ -29,6 +29,7 @@
 
 2. Binding资源的格式化
     Text="{Binding XXX, StringFormat={}{0:0.###}}"
+    <StatusBarItem Content="{Binding ShapeTypeString}" ContentStringFormat="绘图形状: {0}"/>
 
 3. 控件之间的绑定
     有:
