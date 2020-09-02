@@ -1,0 +1,20 @@
+1. NuGet程序包安装:
+    LiveCharts.Wpf
+
+2. 前台加入:
+    xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+
+3. 后台添加引用:
+    using LiveCharts;
+    using LiveCharts.Wpf;
+
+4. Series类型
+    Line Series
+    Vertical Line Series
+    Column Series
+    Row Series
+    StepLine Series
+    Stacked Area Series
+    Vertical Stacked Area Series
+    ...
+

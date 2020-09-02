@@ -1,0 +1,37 @@
+
+
+Dispatcher.Invoke(new Action(() => 
+{
+    
+}));
+
+
+Dispatcher.BeginInvoke(new Action(() => 
+{
+    
+}));
+
+
+匿名写法
+App.Current.Dispatcher.Invoke(() =>
+{
+    
+});
+
+
+非UI环境下的异步委托
+
+new Thread(delegate ()
+{
+    ThreadPool.QueueUserWorkItem(delegate
+    {
+        System.Threading.SynchronizationContext.SetSynchronizationContext(new System.Windows.Threading.DispatcherSynchronizationContext(System.Windows.Application.Current.Dispatcher));
+        System.Threading.SynchronizationContext.Current.Send(pl =>
+        {
+            //执行相关任务.....
+            
+            
+        }, null);
+    });
+}).Start();
+

@@ -1,5 +1,6 @@
 
 选择时全选并在点击回车时触发MVVM写入
+
     <TextBox Text="{Binding AngleStartDeg, StringFormat={}{0:0.###}, UpdateSourceTrigger=Explicit}"
              KeyDown="TextBox_KeyDown" 
              PreviewMouseDown="TextBox_PreviewMouseDown"
