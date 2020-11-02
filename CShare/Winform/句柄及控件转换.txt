@@ -1,0 +1,10 @@
+
+1. 句柄转控件
+    Control control = System.Windows.Forms.Form.FromHandle(handle);
+    Control control = System.Windows.Forms.Form.FromChildHandle(handle);
+
+2. 获取控件句柄
+    Control control = new Control();
+    control.Handle;
+
+    
