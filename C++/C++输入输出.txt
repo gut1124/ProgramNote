@@ -1,0 +1,15 @@
+头文件: <iostream>
+
+标准输入流(cin): cin >> String;
+    
+
+标准输出流(cout): cout << "String" << endl; 
+    endl 会在输出流中添加上'\n',并刷新输出流;
+    
+标准错误流(cerr)  
+    
+标准日志流(clog)
+
+只有cin是输入流,而cout cerr clog为输出流.
+cout 与 clog 是带缓冲的输出, 而cerr为不经过缓冲的输出;
+而在系统出现异常的时候,或许程序将面临无法调用栈控件缓冲的情况,所cerr可应用于紧急的场合;

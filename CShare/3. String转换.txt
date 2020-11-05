@@ -1,0 +1,58 @@
+1. int转成string
+
+Convert.ToString()
+xxx.ToString()      (xxx为变量名)
+
+如:
+int Value = 1;
+string varString1 = Convert.ToString(Value); 
+string varString2 = Value.ToString();
+
+
+2. string转int
+int.Parse(string s)     得到的是对应的int值,但需要确保string有效
+int.TryParse(string s, out int result)  返回值为bool,指示转换是否成功.result为存放转换的结果
+
+3. string转其他类型
+float等其他类型: float.Parse  float.TryParse
+
+
+4. string的格式化转换
+string filePath = string.Format("{0}\\{1}.csv", path, DateTime.Now.ToString("yyyy-MM-dd"));
+
+
+5. String 转Double[]
+    String Cmd = "1.1,2,3.4,55,24,37.2"
+    Double[] Data = Cmd.Split(',').ToList().ConvertAll(x => Double.Parse(x)).ToArray()
+
+    x => Double.Parse(x):  Lambda 表达式
+
+6. String[] 筛选
+    "fe80::50cf:52c:ee36:4666%8","fe80::e0d5:6dda:ec4d:1435%3","192.168.30.76","192.168.102.1"
+    ==> "192.168.30.76","192.168.102.1"
+
+    string[] LocalIPGroup = EnetSocketCtrl.GetLocalAddresses(); 
+    cboxLocalIP.ItemsSource = LocalIPGroup.Where(x => x.IndexOf(':') < 0);  
+                
+                
+7. string类型转成byte[]：
+
+    byte[] byteArray = System.Text.Encoding.Default.GetBytes ( str );
+
+    例：
+
+    （"01" 转成 byte[] = new byte[]{ 0x30,0x31}）
+
+    byte[] byteArray = System.Text.Encoding.ASCII.GetBytes ( str );
+
+8. byte[]转成string：
+
+    string str = System.Text.Encoding.Default.GetString ( byteArray );
+
+    例：
+
+    ASCIIbyte[]转成string：
+
+    （byte[] = new byte[]{ 0x30, 0x31} 转成"01"）
+
+    string str = System.Text.Encoding.ASCII.GetString ( byteArray );
