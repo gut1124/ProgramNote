@@ -1,0 +1,34 @@
+单相机标定的作用:
+    1) 畸变校正;
+    2) 一维和二维的测量;
+
+标定的本职:
+    计算相机的内参矩阵和外参矩阵;
+
+
+产生标定文件:
+    gen_caltab( : : XNum, YNum, MarkDist, DiameterRatio, CalPlateDescr, CalPlatePSFile : )
+    XNum: X方向的mark点数量;
+    YNum: y方向的mark点数量;
+    MarkDist: 两个标定点圆心之间的距离,单位:米;
+    DiameterRatio: mark点直径与两个mark点之间的距离的比值;
+    CalPlateDescr: 生成的标定描述文件;
+    CalPlatePSFile: 生成的PS文件名词;
+
+如: 
+    gen_caltab (7, 7, 0.0125, 0.5, 'caltab.descr', 'caltab.ps')
+
+在halcon/calib目录下已经有常用的标定描述文件;
+
+
+
+生成相机内参:
+    1) 通过标定助手实现;
+    2) 自行通过相关算子实现;
+
+
+畸变矫正:
+
+    1) 生成矫正后的内参
+    change_radial_distortion_cam_par( : : Mode, CamParamIn, DistortionCoeffs : CamParamOut)
+

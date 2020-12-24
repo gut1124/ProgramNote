@@ -1,0 +1,22 @@
+1. 计算矫正径向畸变后的相机内参
+change_radial_distortion_cam_par( : : Mode, CamParamIn, DistortionCoeffs : CamParamOut)
+参数含义:
+    Mode: 选用的算法模式;
+    CamParamIn: 相机内参;
+    DistortionCoeffs: 径向扭曲值,一般默认值;
+    CamParamOut: 经过矫正过后的相机内参;
+
+2. 生成矫正映射
+gen_radial_distortion_map( : Map : CamParamIn, CamParamOut, MapType : )
+参数含义:
+    Map: 输出的映射对象;
+    CamParamIn: 相机内参;
+    CamParamOut: 计算矫正后的相机内参;
+    MapType: 映射类型(插值方式);
+
+3. 矫正
+map_image(Image, Map : ImageMapped : : )
+参数含义:
+    Image: 输入图像;
+    Map: 矫正映射对象;
+    ImageMapped: 映射后的图像;

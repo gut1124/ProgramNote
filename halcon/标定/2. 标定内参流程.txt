@@ -1,0 +1,114 @@
+
+halcon中,标定内参有两种模式:
+    division 模式(面阵): 
+        [Focus,Kappa,Sx,Sy,Cx,Cy,ImageWidth,ImageHeight]
+        Focus: 相机焦距,单位米;
+        Kappa: 畸变系数;
+        Sx,Sy: 像元尺寸;
+        Cx,Cy: 中心位置;
+        ImageWidth: 图像宽度;
+        ImageHeight: 图像高度;
+    polynomial 模式(面阵):
+        Focus: 相机焦距,单位米;
+        K1,K2,K3: 径向畸变系数;
+        P1,P2: 切向畸变系数;
+        Sx,Sy: 像元尺寸;
+        Cx,Cy: 中心位置;
+        ImageWidth: 图像宽度;
+        ImageHeight: 图像高度;
+    两种模式相比,后者畸变系数精度更高,同时所需要的计算资源更多;
+    如果是其他相机模型(如面阵远心,线扫相机等),详看halcon相关描述;
+
+标定内参流程:
+
+    1. 设置相机参数(理论值)
+    CameraParam := [Focus, Kappa, Sx, Sy, Cx, Cy, ImageWidth, ImageHeight]
+    参数含义: 
+        见上
+    示例:
+        StartCameraParme := [0.016, 0, 0.0000074, 0.0000074, 326, 247, 652, 494]
+    
+    2. 创建校准数据模型
+    create_calib_data( : : CalibSetup, NumCameras, NumCalibObjects : CalibDataID)
+    参数含义:
+        CalibSetup: 标定设置类型;
+            calibration_object: 普通标定模型;
+            hand_eye_moving_cam: 手眼移动相机标定模型;
+            hand_eye_scara_moving_cam: scara手眼移动相机标定模型;
+            hand_eye_stationary_cam: 手眼固定相机标定模型;
+            hand_eye_scara_stationary_cam: scara手眼固定相机模型;
+        NumCameras: 相机的数量;
+        NumCalibObjects: 标定对象的数量;
+        CalibDataID: 标识数据模型ID;
+    示例:
+        create_calib_data ('calibration_object', 1, 1, CalibDataID)
+
+    3. 在校准数据模型中设置相机的类型和初始参数
+    set_calib_data_cam_param( : : CalibDataID, CameraIdx, CameraType, CameraParam : )
+    参数含义:
+        CalibDataID: 标定数据模型ID;
+        CameraIdx: 相机索引;
+        CameraType: 相机类型(具体含义见上);
+            area_scan_division: ['area_scan_division', Focus, Kappa, Sx, Sy, Cx, Cy, ImageWidth, ImageHeight]
+            area_scan_polynomial: ['area_scan_polynomial', Focus, K1, K2, K3, P1, P2, Sx, Sy, Cx, Cy, ImageWidth, ImageHeight]
+        CameraParam: 与CameraType对应的相机内参;
+    示例:
+        set_calib_data_cam_param (CalibDataID, 0, 'area_scan_division', StartCamPar)
+
+    4. 在标定模型中定义标定对象;
+    set_calib_data_calib_object( : : CalibDataID, CalibObjIdx, CalibObjDescr : )
+    参数含义:
+        CalibDataID: 标定数据模型ID;
+        CalibObjIdx: 标定对象索引;
+        CalibObjDescr: 标定对象描述文件;
+    示例:
+        set_calib_data_calib_object (CalibDataID, 0, 'caltab_30mm.descr')
+
+    5. 查找并识别标定板的点和轮廓(循环多次)
+    find_calib_object(Image : : CalibDataID, CameraIdx, CalibObjIdx, CalibObjPoseIdx, GenParamName, GenParamValue : )
+    参数含义:
+        Image: 图像;
+        CalibDataID: 标定数据模型ID;
+        CameraIdx: 相机索引;
+        CalibObjIdx: 标定对象索引;
+        CalibObjPoseIdx: 被观测标定对象索引;
+        GenParamName: 通用参数名称;
+        GenParamValue: 通用参数值;
+    示例:
+        find_calib_object (Image, CalibDataID, 0, 0, Index, [], [])
+
+    6. 显示识别到的轮廓(可选)
+    get_calib_data_observ_contours( : Contours : CalibDataID, ContourName, CameraIdx, CalibObjIdx, CalibObjPoseIdx : )
+    参数含义:
+        Contours: 轮廓对象;
+        CalibDataID: 标定数据模型ID;
+        ContourName: 轮廓名;
+        CameraIdx: 相机索引;
+        CalibObjIdx: 标定对象索引;
+        CalibObjPoseIdx: 被观测标定对象索引;
+    示例:
+        get_calib_data_observ_contours (Caltab, CalibDataID, 'caltab', 0, 0, Index)
+
+    7. 计算相机参数
+    calibrate_cameras( : : CalibDataID : Error)
+    参数含义:
+        CalibDataID: 标定数据模型ID;
+        Error: 最优误差值;
+
+    8. 获取相机内参
+    get_calib_data( : : CalibDataID, ItemType, ItemIdx, DataName : DataValue)
+    参数含义:
+        CalibDataID: 标定数据模型ID;
+        ItemType: 项类型;
+        ItemIdx: 对应项索引;
+        DataName: 数据名;
+        DataValue: 数据值;
+    示例:
+        get_calib_data (CalibDataID, 'camera', 0, 'params', CameraParam)
+
+    9. 保存相机内参
+    write_cam_par( : : CameraParam, CamParFile : )
+    参数含义:
+        CameraParam: 相机内参;
+        CamParFile: 相机参数文件;
+        

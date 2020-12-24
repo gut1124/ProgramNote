@@ -1,0 +1,13 @@
+相机外参,即相机的位姿
+
+标定过程与标定内参一致,在计算相机标定参数之后,用get_calib_data获取外参参数:
+get_calib_data( : : CalibDataID, ItemType, ItemIdx, DataName : DataValue)
+(参数含义见内参章节)
+
+示例:
+    get_calib_data (CalibDataID, 'calib_obj_pose', [0,1], 'pose', PoseCalib)
+
+结果:
+    PoseCalib: [0.00568105, -0.00303036, 0.28725, 358.469, 31.86, 91.0477, 0]
+    分别为: x,y,z三轴的平移参数,x,y,z三轴的旋转参数;
+

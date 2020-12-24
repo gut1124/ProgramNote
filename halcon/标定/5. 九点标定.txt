@@ -1,0 +1,13 @@
+
+生成标定矩阵:
+vector_to_hom_mat2d( : : Px, Py, Qx, Qy : HomMat2D)
+
+坐标转换:
+affine_trans_point_2d( : : HomMat2D, Px, Py : Qx, Qy)
+
+
+//直接计算:
+Qx = HomMat2D[0] * Px + HomMat2D[1] * Py + HomMat2D[2];
+Qy = HomMat2D[3] * Px + HomMat2D[4] * Py + HomMat2D[5];
+
+
