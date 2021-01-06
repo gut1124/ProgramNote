@@ -1,0 +1,11 @@
+1. 创建位姿:
+    create_pose( : : TransX, TransY, TransZ, RotX, RotY, RotZ, OrderOfTransform, OrderOfRotation, ViewOfTransform : Pose)
+    OrderOfTransform: 旋转和平移的顺序
+        Rp+T: M=T*R             (常规类型)
+        R(p-T): M=R*(-T)        (非常规类型)
+    OrderOfRotform: 旋转值的含义
+        gba: xyz欧拉角顺规/zyx固定角顺规
+        abg: zyx欧拉角顺规/xyz固定角顺规
+    ViewOfTransform: 变换视角
+        point: 正常视角
+        coordinate_system: 角度取反
