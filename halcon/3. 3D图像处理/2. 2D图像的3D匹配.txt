@@ -1,0 +1,18 @@
+1. 2D图像,2D模板
+
+
+
+1. 2D图像,3D模板
+find_shape_model_3d(Image : : ShapeModel3DID, MinScore, Greediness, NumLevels, GenParamName, GenParamValue : Pose, CovPose, Score)
+参数含义:
+    Image: 匹配图像;
+    ShapeModel3DID: 3D模板句柄;
+    MinScore: 最小匹配分数;
+    Greediness: 贪婪度;
+    NumLevels: 金字塔等级;
+    GenParamName: 通用参数名;
+    GenParamValue: 通用参数值;
+    Pose: 3D位姿;
+    CovPose: 姿态参数的6个标准差或36个协方差(?);
+    Score: 匹配分数;
+

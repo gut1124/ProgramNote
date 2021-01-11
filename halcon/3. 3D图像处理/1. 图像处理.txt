@@ -1,0 +1,87 @@
+1. 生成3D对象
+xyz_to_object_model_3d(X, Y, Z : : : ObjectModel3D)
+参数含义:
+    X: 图像的x坐标和三维点的ROI;
+    Y: 图像的y坐标三维点;
+    Z: 图像的z坐标三维点;
+    ObjectModel3D: 3D对象模型句柄;
+
+2. 筛选3D点集
+select_points_object_model_3d( : : ObjectModel3D, Attrib, MinValue, MaxValue : ObjectModel3DThresholded)
+参数含义:
+    ObjectModel3D: 3D对象模型句柄;
+    Attrib: 属性;
+    MinValue: 最大值;
+    MaxValue: 最小值;
+    ObjectModel3DThresholded: 点位筛选后的3D对象(输出);
+
+    Attrib:
+        point_coord_x: x坐标;
+        point_coord_y: y坐标;
+        point_coord_z: z坐标;
+        point_normal_x: 三维点集法线的x分量;
+        point_normal_y: 三维点集法线的y分量;
+        point_normal_z: 三维点集法线的z分量;
+
+应用: 选择3D点集中Z轴某范围的点集:
+MinValue := 0.500
+MaxValue := 0.670
+select_points_object_model_3d (ObjectModel3DID, 'point_coord_z', MinValue, MaxValue, ObjectModel3DIDReduced)
+
+3. 3D对象的连通性分析
+connection_object_model_3d( : : ObjectModel3D, Feature, Value : ObjectModel3DConnected)
+参数含义:
+    ObjectModel3D: 3D对象模型句柄;
+    Feature: 特征;
+    Value: 数值;
+    ObjectModel3DConnected: 连通性分析后的3D对象(输出);
+
+    Feature:
+        distance_3d: 点之间的欧氏距离,低于这个值的点都认为是连通的;
+        angle: 各点法线的角度,低于这个角度的点都认为是连通的,范围为[0,pi];
+        distance_mapping: ;
+        lines: 返回对象模型中由线连接的部分,Value参数无效;
+        mesh: 返回3D对象模型中与三角形或多边形连接的部分,Value参数无效;
+
+4.计算3D对象模型体积
+volume_object_model_3d_relative_to_plane( : : ObjectModel3D, Plane, Mode, UseFaceOrientation : Volume)
+参数含义:
+    ObjectModel3D: 3D对象模型句柄;
+    Plane: 平面姿态(?);
+    Mode: 在参考平面的上方和下方组合卷的方法;
+    UseFaceOrientation: 决定脸部的方向是否应该影响到体积的结果符号;
+    Volume: 体积;
+
+5. 计算3D对象模型直径
+max_diameter_object_model_3d( : : ObjectModel3D : Diameter)
+参数含义:
+    ObjectModel3D: 3D对象模型句柄;
+    Diameter: 直径;
+
+6. 选择3D对象模型(从对象组中选择,类似于blob)
+select_object_model_3d( : : ObjectModel3D, Feature, Operation, MinValue, MaxValue : ObjectModel3DSelected)
+参数含义:
+    ObjectModel3D: 3D对象模型句柄;
+    Feature: 特征;
+    Operation: 特征筛选之间的逻辑;
+    MinValue: 最小值;
+    MaxValue: 最大值;
+    ObjectModel3DSelected: 筛选后的3D对象模型句柄;
+
+    Feature:
+        mean_points_x: 中点x坐标;
+        mean_points_y: 中点y坐标;
+        mean_points_z: 中点z坐标;
+        diameter_axis_aligned_bounding_box: 最小轴平行长方体的对角线长度;
+        diameter_bounding_box: 最小外接长方体的对角线长度;
+        diameter_object: 直径;
+        volume: 体积;
+        volume_axis_aligned_bounding_box: 最小轴平行长方体的体积;
+        area: 模型三角测量的面积;
+        num_points: 点集中点的数量;
+        num_triangles: 三角形的数量(?);
+        num_faces: 面的数量;
+        num_lines: 折线的数量(?);
+
+
+
