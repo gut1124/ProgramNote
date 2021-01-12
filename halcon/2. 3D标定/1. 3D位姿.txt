@@ -1,3 +1,15 @@
+
+halcon算子:
+create_pose: 创建位姿;
+hom_mat3d_to_pose: 矩阵转位姿;
+pose_to_hom_mat3d: 位姿转矩阵;
+convert_pose_type: 转换位姿类型;
+write_pose: 写入点位;
+read_pose: 读取点位;
+set_origin_pose: 转换3D点位的原点;
+pose_invert: 点位求逆;
+pose_compose: 点位相乘;
+
 1. 创建位姿:
     create_pose( : : TransX, TransY, TransZ, RotX, RotY, RotZ, OrderOfTransform, OrderOfRotation, ViewOfTransform : Pose)
     OrderOfTransform: 旋转和平移的顺序

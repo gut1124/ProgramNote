@@ -78,10 +78,32 @@ select_object_model_3d( : : ObjectModel3D, Feature, Operation, MinValue, MaxValu
         volume: 体积;
         volume_axis_aligned_bounding_box: 最小轴平行长方体的体积;
         area: 模型三角测量的面积;
-        num_points: 点集中点的数量;
+        num_points: 点集中点的数量(常用);
         num_triangles: 三角形的数量(?);
         num_faces: 面的数量;
         num_lines: 折线的数量(?);
+
+7. 稀疏3D点位转稠密3D点位
+fit_primitives_object_model_3d( : : ObjectModel3D, GenParamName, GenParamValue : ObjectModel3DOut)
+参数含义:
+    ObjectModel3D: 3D对象模型句柄;
+    GenParamName: 参数名;
+    GenParamValue: 参数值;
+    ObjectModel3DOut: 稠密3D对象模型句柄;
+
+    GenParamName:
+        primitive_type: 原始类型
+            cylinder: 圆柱;
+            sphere: 球体;
+            plane: 平面;
+            all: 所有;
+        fitting_algorithm: 拟合算法
+            least_squares
+            least_squares_huber 
+            least_squares_tukey
+        output_xyz_mapping: 输出坐标映射
+
+
 
 
 

@@ -1,0 +1,22 @@
+
+halcon算子:
+
+生成3D对象模型:
+gen_empty_object_model_3d: 生成空对象;
+gen_object_model_3d_from_points: 通过点生成;
+gen_box_object_model_3d: 生成盒形对象;
+gen_sphere_object_model_3d: 生成球形对象;
+gen_cylinder_object_model_3d: 生成圆柱形对象;
+gen_plane_object_model_3d: 生成平面对象;
+
+获取模型信息:
+get_object_model_3d_params
+
+点集修改:
+set_object_model_3d_attrib_mod: 
+select_points_object_model_3d: 
+reduce_object_model_3d_by_view: 
+
+
+
+connection_object_model_3d: 连通性分析 
