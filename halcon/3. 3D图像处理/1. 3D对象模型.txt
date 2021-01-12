@@ -1,22 +1,55 @@
 
 halcon算子:
 
-生成3D对象模型:
+创建3D对象模型:
 gen_empty_object_model_3d: 生成空对象;
 gen_object_model_3d_from_points: 通过点生成;
 gen_box_object_model_3d: 生成盒形对象;
 gen_sphere_object_model_3d: 生成球形对象;
 gen_cylinder_object_model_3d: 生成圆柱形对象;
 gen_plane_object_model_3d: 生成平面对象;
+----
+read_object_model_3d: 从本地文件中加载;
+----
+xyz_to_object_model_3d: 从xyz映射图中创建;
+
+
+3D对象模型内容:
 
 获取模型信息:
 get_object_model_3d_params
 
-点集修改:
-set_object_model_3d_attrib_mod: 
-select_points_object_model_3d: 
-reduce_object_model_3d_by_view: 
+为3D对象模型增加特征:
+set_object_model_3d_attrib/set_object_model_3d_attrib_mod: 手动向3D对象模型添加属性或修改已经包含的属性;
+surface_normals_object_model_3d: 添加法线属性
+triangulate_object_model_3d: 三角化;
+fit_primitives_object_model_3d: 拟合为原始对象
 
+修改点集:
+set_object_model_3d_attrib_mod: 修改3D对象模型属性;
+select_points_object_model_3d: 根据属性特征来筛选适合的点集;
+reduce_object_model_3d_by_view: 裁剪区域;
+sample_object_model_3d: 降低点密度(均匀);
+simplify_object_model_3d: 降低点密度(非均匀,平滑区域更稀疏);
+smooth_object_model_3d: 平滑;
+segment_object_model_3d: 分割;
+connection_object_model_3d: 连通性分析;
 
+空间转换:
+rigid_trans_object_model_3d: 
+affine_trans_object_model_3d: 
+projective_trans_object_model_3d: 
 
-connection_object_model_3d: 连通性分析 
+结合:
+union_object_model_3d: 联合为同一个对象;
+fuse_object_model_3d: 将多个3D对象模型(在同一个坐标系中注册)融合到一个曲面中;
+
+提取特征:
+area_object_model_3d: 计算对象表面面积;
+distance_object_model_3d: 计算一个3D对象模型中的点到另一个3D对象模型中的点、三角形或基元的距离;
+max_diameter_object_model_3d: 最大距离;
+moments_object_model_3d: 计算矩;
+smallest_bounding_box_object_model_3d: 最小外接长方体句柄;
+smallest_sphere_object_model_3d: 最小外界球体句柄;
+volume_object_model_3d_relative_to_plane: 体积;
+intersect_plane_object_model_3d: 
