@@ -52,4 +52,4 @@ moments_object_model_3d: 计算矩;
 smallest_bounding_box_object_model_3d: 最小外接长方体句柄;
 smallest_sphere_object_model_3d: 最小外界球体句柄;
 volume_object_model_3d_relative_to_plane: 体积;
-intersect_plane_object_model_3d: 
+intersect_plane_object_model_3d: 计算3维平面和3D对象模型的交集;
