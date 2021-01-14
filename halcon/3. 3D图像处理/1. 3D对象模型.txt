@@ -13,12 +13,6 @@ read_object_model_3d: 从本地文件中加载;
 ----
 xyz_to_object_model_3d: 从xyz映射图中创建;
 
-
-3D对象模型内容:
-
-获取模型信息:
-get_object_model_3d_params
-
 为3D对象模型增加特征:
 set_object_model_3d_attrib/set_object_model_3d_attrib_mod: 手动向3D对象模型添加属性或修改已经包含的属性;
 surface_normals_object_model_3d: 添加法线属性
@@ -32,7 +26,7 @@ reduce_object_model_3d_by_view: 裁剪区域;
 sample_object_model_3d: 降低点密度(均匀);
 simplify_object_model_3d: 降低点密度(非均匀,平滑区域更稀疏);
 smooth_object_model_3d: 平滑;
-segment_object_model_3d: 分割;
+segment_object_model_3d: 通过相似特征分割点集;
 connection_object_model_3d: 连通性分析;
 
 空间转换:
@@ -45,11 +39,21 @@ union_object_model_3d: 联合为同一个对象;
 fuse_object_model_3d: 将多个3D对象模型(在同一个坐标系中注册)融合到一个曲面中;
 
 提取特征:
+get_object_model_3d_params: 获取模型信息;
 area_object_model_3d: 计算对象表面面积;
 distance_object_model_3d: 计算一个3D对象模型中的点到另一个3D对象模型中的点、三角形或基元的距离;
-max_diameter_object_model_3d: 最大距离;
+max_diameter_object_model_3d: 计算指定3D模型的最大直径;
 moments_object_model_3d: 计算矩;
 smallest_bounding_box_object_model_3d: 最小外接长方体句柄;
 smallest_sphere_object_model_3d: 最小外界球体句柄;
-volume_object_model_3d_relative_to_plane: 体积;
+volume_object_model_3d_relative_to_plane: 3D模型相对于平面的体积;
 intersect_plane_object_model_3d: 计算3维平面和3D对象模型的交集;
+
+
+注册3D对象模型:
+register_object_model_3d_pair: 搜索两个3D模型间的转换;
+register_object_model_3d_global: 改进3D模型间的转换;
+affine_trans_object_model_3d: 将3D模型进行仿射变换;
+
+
+

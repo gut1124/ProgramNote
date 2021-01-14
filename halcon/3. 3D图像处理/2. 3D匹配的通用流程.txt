@@ -1,0 +1,45 @@
+
+
+----------------------------------------------
+
+3D模型匹配通用流程
+
+1. 读取3D模型
+read_object_model_3d
+
+2. 创建3D形状模板
+prepare_object_model_3d
+create_shape_model_3d
+
+3. 从图像中查找模板
+find_shape_model_3d
+
+----------------------------------------------
+
+基于表面的3D模型匹配通用流程
+
+1. 访问创建表面模型需要的3D模型
+xyz_to_object_model_3d
+
+2. 创建表面模板
+create_surface_model
+
+3. 访问待匹配的3D模型
+
+4. 从待匹配3D模型中查找表面模板
+find_surface_model
+
+
+----------------------------------------------
+
+基于可变型表面的3D模型匹配通用流程
+1. 访问创建表面模型需要的3D模型
+
+2. 创建可变型表面模板
+create_deformable_surface_model
+
+3. 增加可变型表面模板参考点
+add_deformable_surface_model_reference_point
+
+4. 匹配
+find_deformable_surface_model
