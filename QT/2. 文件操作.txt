@@ -1,0 +1,16 @@
+
+打开文件
+QFileDialog::getOpenFileName
+QFileDialog::getOpenFileNames
+
+    QFileDialog::getOpenFileName(this, tr("Open File"), nullptr, tr("All Files (*.*)"));
+
+保存文件
+QFileDialog::getSaveFileName
+
+    QFileDialog::getSaveFileName(this);
+
+选择目录
+QFileDialog::getExistingDirectory
+
+    QFileDialog::getExistingDirectory(this);

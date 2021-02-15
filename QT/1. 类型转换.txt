@@ -1,0 +1,10 @@
+
+QString 转 String:
+    String str = qstringObj.toStdString()
+
+
+String 转 QString:
+    QString qstringObj = QString::fromStdString(stringObj);
+
+char* 转 QString
+    QString str = tr("123");
