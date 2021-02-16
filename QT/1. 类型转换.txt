@@ -8,3 +8,13 @@ String 转 QString:
 
 char* 转 QString
     QString str = tr("123");
+
+
+-----------------
+
+int 转 QString
+    QString::number(value)
+
+QString 转 int 
+    qstringObj.toInt();
+
