@@ -2,6 +2,9 @@
 QString 转 String:
     String str = qstringObj.toStdString()
 
+    //由于上面的方法转换中文时有乱码,所以要用以下方法:
+    string fileNmaeStd = string(qstringObj.toLocal8Bit());
+
 
 String 转 QString:
     QString qstringObj = QString::fromStdString(stringObj);
