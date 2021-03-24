@@ -1,4 +1,38 @@
-1. 适用于tab无法补全,但ctrl+tab可以补全的情况
+1. tab无法补全,但ctrl+tab可以补全
     xfwm4-settings
-    在弹出来的界面中选择keyboard,然后将Switch window for same application的快捷方式清除;
-    
+    在弹出来的界面中选择keyboard,然后将Switch window for same application的快捷键清除;
+
+2. 安装软件时,出现如下报错:
+    Preconfiguring packages ...
+    dpkg: warning: 'ldconfig' not found in PATH or not executable.
+    dpkg: warning: 'start-stop-daemon' not found in PATH or not executable.
+    dpkg: error: 2 expected programs not found in PATH or not executable.
+    Note: root's PATH should usually contain /usr/local/sbin, /usr/sbin and /sbin.
+    E: Sub-process /usr/bin/dpkg returned an error code (2)
+
+    原因: 环境变量问题,以root登陆,然后编辑/root/.bashrc,在最后添加以下设置:
+    export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+3. ubuntu apt-get 没有补全,无法获取apt中的包
+    1) 安装 apt-get install bash-completion(注意: 很多资料中都是写的是 bash_completion, 由于无法补全apt包,一直无法正常安装,改成bash-completion即可);
+    2) 将/etc/bash.bashrc 中以下部分取消注释:
+        if ! shopt -oq posix; then
+            if [ -f /usr/share/bash-completion/bash_completion ]; then
+            . /usr/share/bash-completion/bash_completion
+            elif [ -f /etc/bash_completion ]; then
+                . /etc/bash_completion
+            fi
+        fi
+    3) source /etc/bash.bashrc
+    4) 如果仍然无法解决,则将以上指令复制到~/.bashrc中,并source
+
+4. 远程登陆时无法打开qt
+    远程登录程序与qt冲突,同时qt库所生成的程序也无法运行;
+
+5. 无法联网
+    DNS服务器有问题,无法ping通www.baidu.com等网址,但是能ping通 114.114.114.114
+    vim /etc/resolv.conf
+    增加:
+        nameserver 221.228.255.1
+        nameserver 114.114.114.114
+        
