@@ -1,0 +1,4 @@
+1. 适用于tab无法补全,但ctrl+tab可以补全的情况
+    xfwm4-settings
+    在弹出来的界面中选择keyboard,然后将Switch window for same application的快捷方式清除;
+    
