@@ -45,6 +45,11 @@ endif()
 link_libraries(${BOOST_SERIALIZATION})
 #target_link_libraries(${PROJECT_NAME} ${BOOST_SERIALIZATION_LIB})
 
+# 添加HIK相机SDK支持
+include_directories($ENV{MVCAM_COMMON_RUNENV}/Includes)
+link_directories($ENV{MVCAM_COMMON_RUNENV}/Libraries/win64)
+link_libraries($ENV{MVCAM_COMMON_RUNENV}/Libraries/win64/MvCameraControl.lib)
+
 ####################################################################################################
 # 设置输出
 ####################################################################################################
