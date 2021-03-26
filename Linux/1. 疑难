@@ -36,3 +36,24 @@
         nameserver 221.228.255.1
         nameserver 114.114.114.114
         
+6. 安装halcon后提示无环境变量"HALCONARCH":
+    在 .bashrc 中添加: 
+        export HALCONARCH=aarch64-linux
+        # export HALCONARCH=armv7a-linux #根据自己的电脑位数来
+        export HALCONROOT=/opt/halcon
+
+7. 运行调用了halcon库的程序后,显示无法找到 libhalcon*.so* :
+    1) 编辑链接配置文件
+        vim /etc/ld.so.conf
+
+    2) 确认内容是否为如下,不是则修改为如下,保存并退出
+        include /etc/ld.so.conf.d/*.conf
+
+    3) 进入目录内,创建*.conf文件,文件名随意,扩展名必须为.conf
+        cd /etc/ld.so.conf.d/
+        vim libmy.conf 
+    4) 在文件内部,添加so的路径,保存并退出
+        /home/opt/halocn/lib/aarch64-linux/
+
+    5) 执行命令,使其生效
+        sudo ldconfig
