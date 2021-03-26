@@ -89,3 +89,23 @@ target_link_libraries(${PROJECT_NAME}
   ${OpenCV_LIBS}
 )
 
+
+####################################################################################################
+# 输出
+####################################################################################################
+
+# 设置输出根路径
+set (CMAKE_INSTALL_PREFIX ${PROJECT_SOURCE_DIR}/..)
+
+# 设置库安装路径
+install(TARGETS ${PROJECT_NAME} 
+        EXPORT ${PROJECT_NAME}  
+        LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/lib  # 动态库安装路径
+        ARCHIVE DESTINATION ${CMAKE_INSTALL_PREFIX}/lib  # 静态库安装路径
+        RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/bin  # 可执行文件安装路径
+        )
+
+# 复制相关头文件到头文件安装路径下
+file (GLOB INSTALL_HEAD_FILES  "${PROJECT_SOURCE_DIR}/include/*.h")
+install(FILES ${INSTALL_HEAD_FILES} DESTINATION  ${CMAKE_INSTALL_PREFIX}/include/CvVision)
+
