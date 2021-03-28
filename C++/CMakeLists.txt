@@ -33,7 +33,9 @@ endif()
 ####################################################################################################
 
 # 添加opencv支持
-set(OpenCV_DIR "C:/Program Files/CppLibrary/opencv/build")
+if (WIN32)
+    set(OpenCV_DIR "C:/Program Files/CppLibrary/opencv/build")
+endif()
 find_package(OpenCV REQUIRED)
 link_directories(${OpenCV_LIBRARY_DIRS})
 #target_link_libraries(${PROJECT_NAME}  ${OpenCV_LIBS})  # 这个要放最后
