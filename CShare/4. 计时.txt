@@ -1,0 +1,9 @@
+using System.Diagnostics;
+
+Stopwatch stopWatch = new Stopwatch();
+stopWatch.Start();
+Thread.Sleep(1000);
+stopWatch.Stop();
+long times1 = stopWatch.ElapsedMilliseconds; 
+Console.WriteLine("RunTime " + times1);
+
