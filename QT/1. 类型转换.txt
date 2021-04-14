@@ -10,7 +10,7 @@ string 转 QString:
     QString qstringObj = QString::fromStdString(stringObj);
 
     //由于上面的方法转换中文时有乱码,所以要用以下方法:
-    QString qstringObj = QString::fromLocal8Bit(stringObj);
+    QString qstringObj = QString::fromLocal8Bit(stringObj.data());
 
 char* 转 QString
     QString str = tr("123");
