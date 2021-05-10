@@ -4,6 +4,7 @@ QString 转 string:
 
     //由于上面的方法转换中文时有乱码,所以要用以下方法:
     string fileNmaeStd = string(qstringObj.toLocal8Bit());
+    string fileNmaeStd = string(qstringObj.toUtf8());
 
 
 string 转 QString:
@@ -14,6 +15,11 @@ string 转 QString:
 
 char* 转 QString
     QString str = tr("123");
+    QString str = tr("123");
+
+
+常量转QString
+    QString str = QStringLiteral("123");
 
 
 -----------------
@@ -29,3 +35,5 @@ QString 转 int
 string转const char *:
     string str;
     char * p = str.c_str();
+
+
