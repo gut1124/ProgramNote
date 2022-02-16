@@ -1,0 +1,10 @@
+分类器:
+    1. Gaussian Mixture Models 高斯混合模型
+    2. K-Nearest Neighbors k-紧邻算法
+    3. Look-Up Table 查表法
+    4. Misc
+    5. Neural Nets 神经网络
+    6. Support Vector Machines 支持向量机
+
+
+

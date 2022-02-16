@@ -1,0 +1,56 @@
+
+
+
+
+
+案例1: 
+    classify_halogen_bulbs.hdev 区分卤素灯引脚是否及格
+
+    训练样本----
+    1. ClassNames := ['good','bad','none']  Nu := 0.05 KernelParam := 0.02
+       create_class_svm (7, 'rbf', KernelParam, Nu, |ClassNames|, 'one-versus-one', 'principal_components', 5, SVMHandle)
+        创建svm分类器
+    2. add_samples_to_svm (ClassNames, SVMHandle, WindowHandle, ReadPath)
+        增加训练样本
+    3. train_class_svm (SVMHandle, 0.001, 'default')
+        训练SVM模型
+    
+    识别----
+    1. calculate_features (Region, Features)
+        从region中计算相关特征
+    2. classify_class_svm (SVMHandle, Features, 1, Class)
+        分类
+
+
+案例2: 
+    classify_pills_auto_select_features.hdev 区分不同颜色和面积的糖果
+
+    定义特征维度----
+    1. FeatureGroups := ['region','color'] + get_feature_names (FeatureGroups, FeatureNames)
+       FeatureNames=['area', 'width', 'height', 'ra', 'rb', 'phi', 'roundness', 'num_sides', 'num_connected', 'num_holes', 'area_holes', 'max_diameter', 'orientation', 'outer_radius', 'inner_radius', 'inner_width', 'inner_height', 'circularity', 'compactness', 'convexity', 'rectangularity', 'anisometry', 'bulkiness', 'struct_factor', 'dist_mean', 'dist_deviation', 'euler_number', 'rect2_phi', 'rect2_len1', 'rect2_len2', 'contlength', 'porosity', 'cielab_mean', 'cielab_dev', 'hls_mean', 'hls_dev', 'rgb_mean', 'rgb_dev']
+        定义区域及颜色相关的特征类型
+    2. create_class_train_data (sum(FeatureLengths), ClassTrainDataHandle)
+        创建分类器训练数据 
+    3. set_feature_lengths_class_train_data (ClassTrainDataHandle, FeatureLengths, FeatureNames)
+        在训练数据中定义子特征
+
+    计算特征----
+    1. calculate_features (Pills, Image, FeatureNames, Features)
+        计算特征
+    2. add_sample_class_train_data (ClassTrainDataHandle, 'feature_column', Features, I - 1)
+        将训练样本增加到训练数据中
+
+    训练----
+    1. select_feature_set_svm (ClassTrainDataHandle, 'greedy', [], [], SVMHandle, SelectedFeatures, Score)
+        从训练数据中自动选择合适的特征(SelectedFeatures=['rgb_mean', 'area']),并获取SVM句柄
+    2. clear_class_train_data (ClassTrainDataHandle)
+        释放训练数据
+    
+    分类----
+    1. calculate_features (PillSelected, Image, SelectedFeatures, Features)
+        计算特征(基于有效的特征['rgb_mean', 'area'])
+    2. classify_class_svm (SVMHandle, real(Features), 1, Class)
+        分类
+
+    释放----
+    1. clear_class_svm (SVMHandle)

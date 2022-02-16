@@ -1,0 +1,31 @@
+
+
+
+
+案例1: 
+    classify_wood.hdev 对木纹进行分类
+
+    创建分类器----
+    Classes := ['apple','beech','cherry','maple','oak','walnut']
+    NumFeatures := |FeatureVector|
+    NumClasses := |Classes|
+    NumHidden := 15
+    create_class_mlp (NumFeatures, NumHidden, NumClasses, 'softmax', 'normalization', 10, 42, MLPHandle)
+
+    训练----
+    1. gen_features (Image, FeatureVector)
+        提取特征
+    2. add_sample_class_mlp (MLPHandle, FeatureVector, CorrectClassID)
+        将特征向量设置到对应的ID中
+    3. train_class_mlp (MLPHandle, 200, 1, 0.0001, Error, ErrorLog)
+        训练模型
+
+    分类----
+    1. gen_features (Image, FeatureVector)
+        提取特征
+    2. classify_class_mlp (MLPHandle, FeatureVector, 2, FoundClassIDs, Confidence)
+        分类
+
+
+
+

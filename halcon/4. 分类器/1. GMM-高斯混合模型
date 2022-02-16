@@ -1,0 +1,92 @@
+
+Gaussian Mixture Models(GMM):
+
+
+创建
+    create_class_gmm( : : NumDim, NumClasses, NumCenters, CovarType, Preprocessing, NumComponents, RandSeed : GMMHandle)
+        NumDim: 特征空间的维度数-有多少种特征参数;
+        NumClasses: 分类器数量-有多少种类别;
+        NumCenters: 每个类中心的数量;
+        CovarType: 协方差矩阵的类型;
+        Preprocessing: 用于变换特征向量的预处理类型;
+        NumComponents: 预处理参数,变换后的特征个数;
+        RandSeed: 用于用随机值初始化GMM的随机数生成器的种子值;
+
+
+训练
+    add_class_train_data_gmm( : : GMMHandle, ClassTrainDataHandle : )
+    add_sample_class_gmm( : : GMMHandle, Features, ClassID, Randomize : )
+    add_samples_image_class_gmm(Image, ClassRegions : : GMMHandle, Randomize : )
+    train_class_gmm( : : GMMHandle, MaxIter, Threshold, ClassPriors, Regularize : Centers, Iter)
+
+计算
+    classify_class_gmm( : : GMMHandle, Features, Num : ClassID, ClassProb, Density, KSigmaProb)
+        ClassProb: A-posteriori概率
+        Density: 特征向量的概率密度
+        KSigmaProb: 特征向量的归一化k-概率
+
+    evaluate_class_gmm( : : GMMHandle, Features : ClassProb, Density, KSigmaProb)
+
+
+清除
+    clear_class_gmm( : : GMMHandle : )
+    clear_samples_class_gmm( : : GMMHandle : )
+
+
+序列化/反序列化
+    serialize_class_gmm( : : GMMHandle : SerializedItemHandle)
+    deserialize_class_gmm( : : SerializedItemHandle : GMMHandle)
+    read_class_gmm( : : FileName : GMMHandle)
+    write_class_gmm( : : GMMHandle, FileName : )
+    read_samples_class_gmm( : : GMMHandle, FileName : )
+    write_samples_class_gmm( : : GMMHandle, FileName : )
+
+
+案例1: 
+novelty_detection.hdev  从网面中检测破损
+
+    1. create_class_gmm (5, 1, [1,5], 'spherical', 'normalization', 5, 42, GMMHandle) 
+        创建分类器
+    2. add_samples_image_class_gmm (ImageTexture, Rectangle, GMMHandle, 2.0)
+        将纹理图片作为样本加到分类器中(重复多次)
+    3. classify_image_class_gmm (ImageTextureReduced, Correct, GMMHandle, 0.001) + difference (Rectangle, Correct, Errors)
+        通过GMM算法进行分类,并提取差异区域
+
+案例2: 
+classify_image_class_gmm.hdev 从彩色图片中设置不同的颜色区域,并计算区域类型
+
+    1. create_class_gmm (3, 4, [1,10], 'full', 'none', 2, 42, GMMHandle) + add_samples_image_class_gmm (Image, Classes, GMMHandle, 2.0)
+        创建分类器
+    2. train_class_gmm (GMMHandle, 500, 1e-4, 'uniform', 1e-4, Centers, Iter)
+        训练
+    3. clear_samples_class_gmm (GMMHandle) 
+        清除样本
+    4. classify_image_class_gmm (Image, ClassRegions, GMMHandle, 0.0001)
+        分类
+
+案例3: 
+classify_fuses_gmm_based_lut.hdev 不同颜色的连接器分类
+
+    1. create_class_gmm (3, 5, 1, 'full', 'none', 3, 42, GMMHandle) + add_samples_image_class_gmm (Image, Classes, GMMHandle, 0)
+        创建分类器并增加样本
+    2. train_class_gmm (GMMHandle, 100, 0.001, 'training', 0.001, Centers, Iter)
+        训练
+    3. create_class_lut_gmm (GMMHandle, ['bit_depth','rejection_threshold'], [6,0.03], ClassLUTHandle) + clear_class_gmm (GMMHandle)
+        创建基于gmm的LUT分类器, 并释放gmm
+    4. classify_image_class_lut (Image, ClassRegions, ClassLUTHandle)
+        分类
+
+案例4: 
+classify_citrus_fruits.hdev 区分橘子柠檬等水果
+
+    1. create_class_gmm (2, 2, 1, 'spherical', 'normalization', 10, 42, GMMHandle)
+        创建分类器
+    2. get_features (ObjectSelected, WindowHandle, Circularity, Area, RowRegionCenter, ColumnRegionCenter)
+        提取特征: 圆度,面积
+    3. add_sample_class_gmm (GMMHandle, FeatureVector, 0, 0) / add_sample_class_gmm (GMMHandle, FeatureVector, 1, 0)
+        增加训练样本,将特征向量设置到对应的ID中
+    4. train_class_gmm (GMMHandle, 100, 0.001, 'training', 0.0001, Centers, Iter)
+        训练GMM模型
+    5. FeatureVector := real([Circularity,Area]) + classify_class_gmm (GMMHandle, FeatureVector, 1, ClassID, ClassProb, Density, KSigmaProb)
+        提取待检测图像的特征,并进行分类(ClassID:类别, KSigmaProb:相似度)
+
