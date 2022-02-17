@@ -1,6 +1,53 @@
 
+    
+创建
+    create_class_mlp( : : NumInput, NumHidden, NumOutput, OutputFunction, Preprocessing, NumComponents, RandSeed : MLPHandle)
+        NumInput: 特征的数量
+        NumHidden: 隐藏的数量,根据特征数量与输出数量而定.一般而言,取个较小的数值即可,过大会导致训练数据过拟合,泛化特征差;
+        NumOutput: 输出的数量(有多少种类型)
+        OutputFunction: 输出层函数类型
+            linear: 不适用于分类,用于回归问题;
+            logistic: 比较少用,输出多个(NumOutput)独立逻辑属性的分类;
+            softmax: 常用,用于输出多个(NumOutput)互斥类的分类,classify_image_class_mlp必须使用它;
+        Preprocessing: 预处理类型
+            normalization: 归一化,对于明显的不同特征量度不一致的情况(如面积与圆形度),归一化后的训练可以更少的迭代;
+            principal_components: 主要成分分析,先归一化特征向量,然后通过正交变换求解出关联的向量.(涉及到协方差矩阵的概念,受噪声影响);
+            none: 
+            canonical_variates: 典型变量(线性判别分析),OutputFunction为"softmax"时可用. 
+        NumComponents: 预处理参数:变换后的特征个数(预处理为"normalization"或者"none"时无效)
+        RandSeed: 随机种子
+
+训练
+    add_sample_class_mlp( : : MLPHandle, Features, Target : )
+        Features: 特征数据组
+        Target: 类型ID
+
+    train_class_mlp( : : MLPHandle, MaxIterations, WeightTolerance, ErrorTolerance : Error, ErrorLog)
+        MaxIterations: 优化算法的最大迭代次数
+        WeightTolerance: 两次优化算法迭代间MLP权值差的阈值
+        ErrorTolerance: 两次优化算法迭代间平均误差差的阈值
+        Error: 训练数据的平均误差
+        ErrorLog: 略
+
+计算
+    classify_class_mlp( : : MLPHandle, Features, Num : Class, Confidence)
+        Features: 特征数据组
+        Num: 最佳类的数量
+        Class: 分类类型
+        Confidence: 置信度
+
+清除
+    clear_class_mlp( : : MLPHandle : )
+
+序列化/反序列化
+    read_class_mlp( : : FileName : MLPHandle)
+    write_class_mlp( : : MLPHandle, FileName : )
+    serialize_class_mlp( : : MLPHandle : SerializedItemHandle)
+    deserialize_class_mlp( : : SerializedItemHandle : MLPHandle)
 
 
+备注:
+    MLP与SVM相比,SVM在训练时更快,并在大样本的情况下有更好的识别率,而MLP在分类上更快;
 
 案例1: 
     classify_wood.hdev 对木纹进行分类
@@ -29,4 +76,42 @@
 
 
 segment_citrus_fruits.hdev
-texture_laws_mlp.hdev       纹理特征分类
+
+
+案例2: 
+    texture_laws_mlp.hdev 纹理特征分类(基于查表)
+
+    提取纹理----
+    1. texture_laws (Image, ImageTexture1, 'ee', 5, 7)
+    texture_laws (Image, ImageTexture2, 'ss', 2, 7)
+    texture_laws (Image, ImageTexture3, 'rr', 0, 7)
+    texture_laws (Image, ImageTexture4, 'ww', 0, 7)
+    texture_laws (Image, ImageTexture5, 'le', 7, 7)
+    texture_laws (Image, ImageTexture6, 'el', 7, 7)
+        设置纹理滤镜
+    2. MaskWidth := 41
+    mean_image (ImageTexture1, ImageMean1, MaskWidth, MaskWidth)
+    mean_image (ImageTexture2, ImageMean2, MaskWidth, MaskWidth)
+    mean_image (ImageTexture3, ImageMean3, MaskWidth, MaskWidth)
+    mean_image (ImageTexture4, ImageMean4, MaskWidth, MaskWidth)
+    mean_image (ImageTexture5, ImageMean5, MaskWidth, MaskWidth)
+    mean_image (ImageTexture6, ImageMean6, MaskWidth, MaskWidth)
+    compose6 (ImageMean1, ImageMean2, ImageMean3, ImageMean4, ImageMean5, ImageMean6, TextureImage)
+        计算纹理过滤器输出的局部平均值
+
+
+    创建及训练----
+    1. create_class_mlp (6, 6, 8, 'softmax', 'principal_components', 3, 42, MLPHandle)
+        创建分类器
+    2. add_samples_image_class_mlp (TextureImage, ClassSamples, MLPHandle)
+        增加样本
+    3. train_class_mlp (MLPHandle, 200, 1, 0.01, Error, ErrorLog)
+        训练模型
+    4. create_class_lut_mlp (MLPHandle, [], [], ClassLUTHandle)
+        创建LUT模型
+
+    分类----
+    1. classify_image_class_lut (TextureImage, ClassRegionsLUT, ClassLUTHandle)
+        分类
+
+

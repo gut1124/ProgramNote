@@ -1,0 +1,14 @@
+
+cooc_feature_image(Regions, Image : : LdGray, Direction : Energy, Correlation, Homogeneity, Contrast)
+    计算共现矩阵并推导其灰度值特征
+
+gen_cooc_matrix(Regions, Image : Matrix : LdGray, Direction : )
+    计算图像中一个区域的共现矩阵
+cooc_feature_matrix(CoocMatrix : : : Energy, Correlation, Homogeneity, Contrast)
+    从共现矩阵计算灰度值特征
+
+
+    
+
+cooc_feature_matrix.hdev
+cooc_feature_image.hdev
