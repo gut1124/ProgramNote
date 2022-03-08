@@ -1,0 +1,21 @@
+0. 配置环境
+    1) 切换为阿里云
+    2) 改为中文
+    3) sudo apt-get update
+    4) sudo apt-get upgrade
+
+1. 安装常用工具
+sudo apt-get install cmake g++ vim git tree clang terminator
+
+2. 安装常用算法库
+(ubuntu 20.04)sudo apt-get install libopencv-dev libboost-all-dev libpoco-dev libzbar-dev libeigen3-dev nlohmann-json3-dev libdmtx-dev
+(ubuntu 18.04)sudo apt-get install libopencv-dev libboost-all-dev libpoco-dev libzbar-dev libeigen3-dev nlohmann-json-dev libdmtx-dev
+
+3. 安装qt(ubuntu 20.04不满足要求)
+sudo apt-get install qt5-default qtcreator libqt5sensors5-dev  libqt5charts5-dev libqt5serialport5-dev libqt5serialbus5-dev
+
+4. 安装halcon
+
+5. 安装MVS驱动
+
+
