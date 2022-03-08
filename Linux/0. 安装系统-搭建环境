@@ -1,11 +1,14 @@
 0. 配置环境
     1) 切换为阿里云
-    2) 改为中文
-    3) sudo apt-get update
-    4) sudo apt-get upgrade
+    2) sudo apt-get update
+    3) sudo apt-get upgrade
+    4) 改为中文
 
 1. 安装常用工具
 sudo apt-get install cmake g++ vim git tree clang terminator
+
+git config --global user.email "a1194457876@outlook.com"
+git config --global user.name "duhanfeng"
 
 2. 安装常用算法库
 (ubuntu 20.04)sudo apt-get install libopencv-dev libboost-all-dev libpoco-dev libzbar-dev libeigen3-dev nlohmann-json3-dev libdmtx-dev
@@ -19,3 +22,20 @@ sudo apt-get install qt5-default qtcreator libqt5sensors5-dev  libqt5charts5-dev
 5. 安装MVS驱动
 
 
+
+应用软件
+vscode
+    直接软件仓库, 或, https://code.visualstudio.com/docs/?dv=linux64_deb
+
+----------------
+
+sougou
+    1. 安装 fcitx
+        sudo apt-get install fcitx
+        sudo apt-get install fcitx-table
+    2. 下载 sogoupinyin_*.deb
+    3. 将 "键盘输入法系统" 设置为 "fcitx"
+    4. 在fcitx的设置中添加搜狗输入法
+    备注: 在unbuntu18.04中, 第四步并没有搜狗输入法, 直到将系统语言设置为中文..
+
+----------------
