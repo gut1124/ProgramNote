@@ -1,0 +1,91 @@
+1. 
+0x0386CEE AAB1 -> 22E0
+
+0x0386D22 FEF7 -> 00BF  
+
+0x0386D2E 04D0 -> 04E0
+
+参数入口: int _fastcall CCallHPro(_DWODR *a1)
+
+
+if (result != 2)
+{
+    reutrn result;
+}
+
+更改1:   
+AA B1: CBZ  R2,loc_386D1C    判断loc_386D1C的结果
+22 E0: B loc_386D36          直接跳转
+
+更改2:  
+修改loc_386D04的内容
+
+FE F7 19 FD: BL sub_385758
+00 BF: NOP
+
+更改3: 
+04 D0: BEQ loc_386D36
+04 E0: B   loc_386D36
+
+
+CBZ: 判断是否为0,是则跳转
+B: 跳转
+BEQ: 判断后跳转
+
+
+---------------------------------------------------------------
+
+window  20.11
+
+CCallHProc 函数中 
+
+74 24                         jz      short loc_1806E9195
+
+改成:
+
+EB 6A                         jmp     short loc_1806E91DB
+
+jz: 如果为0则跳转
+jmp: 直接跳转
+
+
+原本: 如果为0,则跳转到后面的逻辑,否则就啪啦啪啦
+修改后: 直接跳入函数体内的某段逻辑,直接绕过验证
+
+
+---------------------------------------------------------------
+
+window  21.11 halcon.dll
+
+CCallHProc 函数中 
+
+74 2B                         jz      short xxx
+
+改成:
+
+xxxxx                        jmp     loc_180708242
+
+
+window  21.11 halconxl.dll
+
+CCallHProc 函数中 
+
+74 2B                         jz      short xxx
+
+改成:
+
+xxxxx                        jmp     loc_180709502
+
+
+linux :
+        jmp loc_85D89F
+
+linux-armv7a:
+BNE loc_3AE9FA   ->  B loc_3AE99A
+
+
+linux-aarch64:
+CBNZ W2, loc_4C88D8 ->  B loc_4C8838
+
+
+
