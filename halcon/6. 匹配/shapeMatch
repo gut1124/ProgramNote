@@ -1,0 +1,14 @@
+
+创建模板:
+
+
+    inspect_shape_model: 
+        edges_image
+        hysteresis_threshold
+
+    edges_image(Image : ImaAmp, ImaDir : Filter, Alpha, NMS, Low, High : )
+        作用: 提取图像的边缘(振幅图以及方向图)
+    hysteresis_threshold: 
+        滞后过滤
+
+匹配:
