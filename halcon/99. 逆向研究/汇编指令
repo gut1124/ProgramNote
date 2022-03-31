@@ -1,0 +1,52 @@
+
+寄存器:
+    eax 累加器,很多加法乘法的缺省寄存器
+    ebx 基地址寄存器,在内存寻址时存放基地址
+    ecx 计数器
+    edx 存放整数除法的余数
+    esi/edi 源/目标索引寄存器
+    ebp 基址指针
+
+寄存器      16位    32位    64位
+累加寄存器   AX     EAX     RAX
+基址寄存器   BX     EBX     RBX
+计数寄存器   CX     ECX     RCX
+数据寄存器   DX     EDX     RDX
+堆栈基指针   BP     EBP     RBP
+变址寄存器   SI     ESI     RSI
+堆栈顶指针   SP     ESP     RSP
+指令寄存器   IP     EIP     RIP
+
+
+jbe: 当低于或等于时转移...
+ja: 大于时跳转
+jl: 小于时跳转
+xchg: 交换内容
+lea: 将一个内存地址直接赋给目的操作数   常用于字符串赋值...
+test: and 操作  常用于if的布尔判断...
+
+cmp: 比较,等于,大于,小于,都会有不同的标志位状态
+                          ZF  CF
+    目的操作数 < 源操作数   0   1
+    目的操作数 > 源操作数   0   0
+    目的操作数 = 源操作数   1   0
+jnz: ZF为0时跳转
+    cmp     eax, 2   
+    jnz     loc_7FFDE5221545(退出)
+    --> if (a != 2){return;}
+
+jz: ZF为1时跳转
+
+
+
+寄存器
+有16个常用寄存器
+prax, rbx, rcx , rdx, rsi, rdi, rbp, rsp
+r8, r9, r10, r11, r12, r13, r14, r15
+寄存器的具体用途
+rax, rdx常作为函数返回值使用
+rdi, rsi, rdx, rcx, r8, r9等寄存器常用于存放函数参数
+rsp, rbp用于栈操作
+rip 作为指令指针
+-> 存储着CPU下一条要执行的指令的地址
+-> 一旦CPU读取一条指令, rip会自动指向下一条指令(存储下一条指令的地址)

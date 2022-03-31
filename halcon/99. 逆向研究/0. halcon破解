@@ -76,6 +76,11 @@ CCallHProc 函数中
 
 xxxxx                        jmp     loc_180709502
 
+vs-halconxl.dll
+jz short loc_10416748
+改成:
+jmp loc_1041680A
+
 
 linux :
         jmp loc_85D89F
