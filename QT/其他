@@ -1,0 +1,4 @@
+1. 判断控件是否被显示
+    QWidget::visibleRegion()
+    QWidget::visibleRegion().isNull() == true 是并未显示
+    
