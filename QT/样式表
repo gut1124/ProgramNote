@@ -1,0 +1,15 @@
+
+qss源自css，相当于css的一个子集，主要支持的是css2标准
+
+1. 如果在窗体widget中 {color:#ff0000;} 这样会对widget以及widget的所有子对象应用该样式;
+2. #widget{color:#ff0000;} 这样就只会对widget对象应用该样式;
+3. QWidget#widget{color:#ff0000;}，只想对窗体本身而不是子控件按钮标签;
+4. QWidget{color:#ff0000;} 只对窗体本身而不是子控件按钮标签等;
+
+
+
+图像字体中,常用有:
+1. 新建: 0xf249
+2. region: 0xf247-0x0f28
+3. checkBook样式: 0xf204-0xf205
+4. 相机: 0xf030
