@@ -39,3 +39,9 @@ sougou
     备注: 在unbuntu18.04中, 第四步并没有搜狗输入法, 直到将系统语言设置为中文..
 
 ----------------
+
+
+双系统时区异常:
+    sudo apt-get install ntpdate
+    sudo ntpdate time.windows.com
+    sudo hwclock --localtime --systohc
