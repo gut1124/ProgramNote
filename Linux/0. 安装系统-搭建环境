@@ -5,7 +5,7 @@
     4) 改为中文
 
 1. 安装常用工具
-sudo apt-get install cmake g++ vim git tree clang terminator
+sudo apt-get install cmake g++ vim git tree clang terminator net-tools
 
 git config --global user.email "a1194457876@outlook.com"
 git config --global user.name "duhanfeng"
@@ -40,8 +40,8 @@ sougou
 
 ----------------
 
-
 双系统时区异常:
     sudo apt-get install ntpdate
     sudo ntpdate time.windows.com
     sudo hwclock --localtime --systohc
+
