@@ -1,0 +1,43 @@
+
+1. 产生测量对象句柄
+    gen_measure_rectangle2( : : Row, Column, Phi, Length1, Length2, Width, Height, Interpolation : MeasureHandle)
+        Row, Column, Phi, Length1, Length2: 矩形描述
+        Width, Height: 图像的宽高信息
+        Interpolation: 插值方式
+
+2. 检测边缘
+    measure_pos(Image : : MeasureHandle, Sigma, Threshold, Transition, Select : RowEdge, ColumnEdge, Amplitude, Distance)
+        Image: 待测量图像
+        MeasureHandle: 测量对象句柄
+        Sigma: 高斯平滑参数
+        Threshold: 最低边缘振幅
+        Transition: 颜色变化方向
+            all: 不限
+            positive: 黑到白
+            negative: 白到黑
+        Select: 选择的点
+            all: 不限
+            first: 第一个点
+            last: 最后的点
+        RowEdge, ColumnEdge: 结果的坐标
+        Amplitude: 边缘振幅
+        Distance: 相邻边之间的距离
+
+3. 清除测量对象句柄
+    close_measure( : : MeasureHandle : )
+
+
+
+拟合直线:
+    1. 将离散点位组合成xld
+        gen_contour_polygon_xld( : Contour : Row, Col : )
+    2. 拟合直线
+        fit_line_contour_xld(Contours : : Algorithm, MaxNumPoints, ClippingEndPoints, Iterations, ClippingFactor : RowBegin, ColBegin, RowEnd, ColEnd, Nr, Nc, Dist)
+        算法:
+            regression: 标准"最小二乘法"的直线拟合
+            huber: 加权"最小二乘法"的直线拟合,基于huber算法降低异常值的影响
+            tukey: 加权"最小二乘法"的直线拟合,基于tukey算法忽略异常值的影响
+            drop: "最小二乘法"的直线拟合,忽略异常值
+            gauss: 加权"最小二乘法"的直线拟合,根据所有等高线点到逼近直线的距离的平均值和标准差来减少异常值的影响
+
+
