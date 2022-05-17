@@ -1,0 +1,9 @@
+
+
+
+
+矩形:
+#include <boost/geometry/geometries/adapted/boost_polygon.hpp>
+
+typedef boost::polygon::rectangle_data<int> rect;
+    rect b = boost::polygon::construct<rect>(1, 2, 3, 4);
