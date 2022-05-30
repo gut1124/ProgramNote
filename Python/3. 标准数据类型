@@ -1,0 +1,77 @@
+6中数据类型:
+    Number
+    String
+    List
+    Tuple
+    Set 
+    Dictionary
+
+Number: 
+    支持int,float,bool,complex
+
+    可以用type来查询类型,除此之外,还有isinstance
+
+    type和isinstance的区别:
+        type认为子类和父类不同;
+        isinstance认为子类属于父类
+
+    bool 是 int 的子类,True和Flase可以和数字相加,前者数值为1,后者数值为0
+
+    del 可以删除引用的对象
+
+String:
+    变量[头下标:尾下标]
+    索引值以 0 为开始值, -1 为从末尾的开始位置
+
+    加号 + 是字符串的连接符, 星号 * 表示复制当前字符串, 与之结合的数字为复制的次数;
+    
+    注意,String中的下标遵循"左闭右开"原则
+
+    如: 
+    str = 'Runoob'
+    print (str)          # 输出字符串                                               
+    print (str[0:-1])    # 输出第一个到倒数第二个的所有字符
+    print (str[0])       # 输出字符串第一个字符
+    print (str[2:5])     # 输出从第三个开始到第五个的字符
+    print (str[2:])      # 输出从第三个开始的后的所有字符
+    print (str * 2)      # 输出字符串两次，也可以写成 print (2 * str)
+    print (str + "TEST") # 连接字符串
+
+    输出结果:
+    Runoob
+    Runoo
+    R
+    noo
+    noob
+    RunoobRunoob
+    RunoobTEST
+        
+List:
+    写在方括号[]里,以逗号分隔开的元素列表,可以修改其中的值;
+    如: list = [ 'abcd', 786 , 2.23, 'runoob', 70.2 ]
+
+    访问: 变量[头下标:尾下标]
+    
+    Python 中使用最频繁的数据类型,列表中元素的类型可以不相同,它支持数字,字符串甚至可以包含列表(所谓嵌套)
+
+    
+
+    List写在方括号之间,元素用逗号隔开;
+    和字符串一样,list可以被索引和切片;
+    List可以使用+操作符进行拼接;
+    List中的元素是可以改变的;
+    列表截取可以接收第三个参数,参数作用是截取的步长;
+
+Tuple:
+    写在小括号()里,以逗号分隔开的元素列表,不可以修改其中的值;
+    如: tuple =  ( 'abcd', 786 , 2.23, 'runoob', 70.2 )
+
+Set:
+    可以使用大括号{}或者是set()函数创建集合
+    注意: 创建一个空集合必须用 set() 而不是 { }，因为 { } 是用来创建一个空字典
+
+    如:  parame = {value01,value02,...} / set(value)
+
+Dictionary: 
+    与C#中的字典的概念,以及C++中的map概念类似;
+    和Set一样使用大括号{}来标识,但是中间使用冒号:区分键和值

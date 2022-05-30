@@ -1,0 +1,18 @@
+1. 安装 https://www.python.org
+    注意安装过程中勾选将python添加都环境变量之中
+    (可参考: https://blog.csdn.net/weixin_49237144/article/details/122915089)
+
+2. 将pip源映射到阿里云
+    1) 创建文件pip/pip.ini
+    2) 将文件内容设置为:
+        [global]
+        index-url=http://mirrors.aliyun.com/pypi/simple/
+        [install]
+        trusted-host=mirrors.aliyun.com
+    3) 添加文件路径到环境变量之中
+
+    (可参考: https://blog.csdn.net/maple05/article/details/111999112)
+
+3. 安装opencv:
+    pip3 install opencv-python
+

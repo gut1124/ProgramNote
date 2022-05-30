@@ -1,0 +1,29 @@
+
+注释: 以#开头  多行可用'''或者"""作为起始标志以及结束标志
+
+第一行注释:  #!/usr/bin/python3  
+    告诉操作系统执行这个脚本的时候,调用哪个解析器
+    还有以下写法: 
+        #!/usr/bin/env python3
+    这个先在环境变量中查找python3的安装路径,没有再以对应路径下的解析器去运行
+
+多行: 使用反斜杠 \ 分行, 而[],{},()中的多行语句不需要
+
+数字类型:
+    int 
+    bool 
+    float 
+    complex 
+
+字符串: 和其他编程语言差不多,值得注意的是单引号'和双引号"完全等价,而 ''' 和 """ 可以实现多行的字符串; r"xxx"中的r可以让字符串中的转义字符\不进行转义
+
+一行执行多条语句: 使用分号;分割
+
+导入(import)
+    导入模块: import somemodule
+    导入模块中的某个函数: from somemodule import somefunction
+    导入模块中的多个函数: from somemodule import firstfunc, secondfunc, thirdfunc
+    导入模块中的全部函数: from somemodule import *  (等价于import somemodule???)
+
+    导入函数类似于c++中的using xxx::aa,使用中不再需要加前缀
+
