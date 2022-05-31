@@ -1,0 +1,23 @@
+
+open() : 打开文件,并返回文件对象;
+
+open(file, mode='r', buffering=-1, encoding=None, errors=None, newline=None, closefd=True, opener=None)
+
+    file: 必需,文件路径(相对或者绝对路径)
+    mode: 可选,文件打开模式
+    buffering: 设置缓冲
+    encoding: 一般使用utf8
+    errors: 报错级别
+    newline: 区分换行符
+    closefd: 传入的file参数类型
+    opener: 设置自定义开启器，开启器的返回值必须是一个打开的文件描述符。
+
+    mode:
+        t: 文本模式(默认);
+        b: 二进制模式;
+        x: 写模式,新建文件,如果已存在则报错;
+        +: 打开文件进行更新(可读可写);
+        r: 只读模式;
+        w: 打开文件,如果存在则打开,如果不存在则创建.文件指针放在文件开始;
+        a: 追加,文件指针放在文件最后;
+    mode的字符可以相互组合;

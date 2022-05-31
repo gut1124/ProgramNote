@@ -1,0 +1,62 @@
+
+def 函数名(参数列表):
+    函数体
+
+
+def max(a,b):
+    if a >= b :
+        return a
+    else:
+        return b
+
+参数传递:
+    可变类型(list,dict): 类似于引用传递,函数内部对入参的修改会影响到外部;
+    不可变类型(numbers,tuple,string): 类似于值传递,函数内部对入参的修改不会影响到外部;
+
+    备注: 函数参数的使用不需要遵循定义的顺序
+
+默认参数:
+    与C++,C#等一致,可以设置默认参数
+
+不定长参数:
+    def functionname([formal_args,] *var_args_tuple ):
+        function_suite
+        return [expression]
+
+    加了星号 * 的参数会以元组(tuple)的形式导入,存放所有未命名的变量参数
+
+    def functionname([formal_args,] **var_args_dict ):
+        function_suite
+        return [expression]
+
+    加了星号 ** 的参数会以字典(Dictionary)的形式导入,存放所有未命名的变量参数
+
+参数拆分:
+    在调用函数时,使用*,表示对参数的拆包,并逐个传递入函数之中,而对于dict对象,则只传递入key
+
+    def add(v1, v2, v3, v4):
+        return v1 + v2 + v3 + v4
+    tuple1 = (1, 2, 3.0, True)
+    add(*tuple1)
+
+匿名函数(lambda):
+    lambda [arg1 [,arg2,.....argn]]:expression
+    
+    如:
+    x = lambda a : a + 10
+    print(x(5))
+
+    sum = lambda arg1, arg2: arg1 + arg2
+
+强制位置参数:
+    函数形参中使用/, 表明/前面的函数形参必须使用位置参数,不能使用关键字参数(人话: 只能按照声明的顺序入参,不能交换顺序);
+    函数形参中使用*, 表明*后面的函数形参必须使用关键字参数(人话: 只能显式入参)
+
+    如:
+    def f(a, b, /, c, d, *, e, f):
+    
+    a,b必须使用指定位置形参,而e,f必须使用关键字形参,c,e则随意
+
+    f(10, 20, 30, 40, e=50, f=60)
+
+    
