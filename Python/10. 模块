@@ -1,0 +1,24 @@
+操作系统接口  os
+文件通配符   glob
+命令行参数   sys
+字符串模式匹配  re
+数学  math
+随机数  random
+统计属性  statistics
+从 URL 中检索数据   urllib.request
+日期和时间 from datetime import date
+数据压缩  zlib / gzip / bz2
+性能测量 from timeit import Timer
+
+输出格式  reprlib  textwrap locale
+模板 Template
+多线程 threading
+日志记录 logging
+弱引用 weakref
+
+
+
+
+
+
+
