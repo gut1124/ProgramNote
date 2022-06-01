@@ -10,6 +10,22 @@ if 分支:
         statement_block_2
     else:
         statement_block_3
+
+match 声明:
+    类似于C/C++中的switch
+
+    match aa:
+        case x:
+            pass
+        case y:
+            pass
+        case z:
+            pass
+        case _:
+            pass
+    
+    而 case _ 则与switch中的default一致;
+
     
 while 循环:
 
@@ -32,13 +48,13 @@ for 循环:
 备注: 在python中,一样有break和continue,作用与C/C++等一致
 
 
-pass 语句:
-    pass 是空语句,不做任何事情,一般用于做占位用;
-
-
 备注:
     在C/C++中,for一般用于明确循环次数的循环,而while用于非明确循环次数的循环(例如某些判断条件满足时才退出);
     而看python,for循环的语法看来,多用于对数据内容的遍历迭代,而明确循环次数的职能由while来实现
+
+pass 语句:
+    pass 是空语句,不做任何事情,一般用于做占位用;
+
 
 异常:
 
