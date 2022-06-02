@@ -16,5 +16,6 @@
 3. 安装opencv:
     pip3 install opencv-python
 
-4. 安装pyside2 (qt-python)
+4. 安装pyside (qt-python)
     pip install pyside2
+    pip install pyside6
