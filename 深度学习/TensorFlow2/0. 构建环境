@@ -1,0 +1,76 @@
+
+具体可以查阅 https://www.tensorflow.org/install/gpu 
+
+TensorFlow-GPU的前置条件:
+    1) anaconda
+    2) NVIDIA® 软件
+
+1. 安装 anaconda
+    https://www.anaconda.com/
+
+    这个是python全家桶,必备,选择跟自己环境适配的最新版本即可.
+    备注: 安装过程注意勾选要将其添加到系统路径下.如果相关选项变灰无法选择,则确认是否已经安装过其他版本的python;
+
+    设置环境变量:
+        C:\ProgramData\Anaconda3
+        C:\ProgramData\Anaconda3\Library\bin
+        C:\ProgramData\Anaconda3\Library\mingw-w64\bin
+        C:\ProgramData\Anaconda3\Library\usr\bin
+        C:\ProgramData\Anaconda3\Scripts\
+
+    切换pip源
+        # 清华源
+        pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+        # 阿里源
+        pip config set global.index-url https://mirrors.aliyun.com/pypi/simple/
+        # 腾讯源
+        pip config set global.index-url http://mirrors.cloud.tencent.com/pypi/simple
+        # 豆瓣源
+        pip config set global.index-url http://pypi.douban.com/simple/
+
+2. 安装 NVIDIA® 软件
+    1) NVIDIA® GPU 驱动程序
+    2) CUDA® 工具包
+    3) CUDA® 工具包附带的 CUPTI
+    4) cuDNN SDK 8.1.0 cuDNN 版本
+
+    具体可以查阅 https://www.tensorflow.org/install/gpu , 确定当前版本的TensorFlow与其对应的NVIDIA®软件版本;
+
+    正如 当前最新版本 2.9.1, 支持CUDA版本为11.2
+    到以下链接安装 GPU 驱动程序
+        https://www.nvidia.com/download/index.aspx?lang=en-us
+
+    到以下链接下载CUDA: 
+        https://developer.nvidia.com/cuda-toolkit-archive
+
+    到以下链接下载cudnn库:
+        https://developer.nvidia.com/rdp/cudnn-archive
+
+    下载cudnn库后,解压,将cuda文件夹改名为cudnn,并复制到cuda的安装路径下;
+    最后,修改环境路径,将cuda路径中的cudnn组件, CUPTI组件以及头文件路径添加到环境变量下;
+    如:
+    C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.2\bin
+    C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.2\libnvvp
+    C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.2\extras\CUPTI\lib64
+    C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.2\cudnn\bin
+    C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.2\include
+
+3. 安装 TensorFlow
+
+    低版本:
+    CPU版本: pip install tensorflow
+    GPU版本: pip install tensorflow-gpu
+
+    2022年版本:
+    pip install tensorflow 
+    
+4. 验证是否已经安装:
+    1. cmd/powshell中: where.exe ipython
+        确定ipython是否已经安装以及其位置
+    2. cmd/powshell中: ipython
+    3. 输入 import tensorflow as tf
+    4. 输入 tf.test.is_gpu_available() , 读取返回值,如果是True表示安装成功
+    4(2). 输入 tf.config.list_physical_devices('GPU'), 返回相关信息
+
+5. 安装PyCharm
+    https://www.jetbrains.com/pycharm/
