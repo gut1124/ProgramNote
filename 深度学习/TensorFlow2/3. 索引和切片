@@ -1,0 +1,46 @@
+
+索引:
+
+    定义一组多维数据:
+        a = tf.ones([1, 5, 5, 3])
+
+    按照传统数组方式访问索引:
+        print(a)
+        print(a[0])
+        print(a[0][0])
+        print(a[0][0][0])
+        print(a[0][0][0][0])
+
+    也可以通过这种方式访问:
+        print(a)
+        print(a[0])
+        print(a[0, 0])
+        print(a[0, 0, 0])
+        print(a[0, 0, 0, 0])
+
+切片:
+    切片以 [start:end] / [start:end:step] 的格式表示
+    其中0,1,2...表示从左到右的下标顺序;
+    而-1,-2,-3...表示从右到左的下标顺序;
+    切片中,遵循左闭右开原则,而缺省表示从最初点开始/到最后一个点
+    如果step为负值,表示从右到左开始读
+
+    如: 
+        b = tf.range(10)
+        print(b[-1:])
+        print(b[-2:])
+        print(b[1:-1])
+        print(b[1:2])
+        print(b[:-2])
+        print(b[:2])
+
+多维数据的切片:
+    c = tf.random.normal([4, 28, 28, 3])
+    print(c.shape)
+    print(c[0].shape)
+    print(c[0, :, :, :].shape)
+    print(c[:, :, 0, :].shape)
+    print(c[:, :, :, :1].shape)
+
+    ...: 对:,:, :, ...的缩写
+    c[:, :, :, :1] -> c[..., :1]
