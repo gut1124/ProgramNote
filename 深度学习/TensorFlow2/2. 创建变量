@@ -1,0 +1,55 @@
+1. 从其他数据结构(如numpy,list等)中构建
+2. 使用tf相关接口进行构建
+3. random
+4. constant
+5. application
+
+
+1. 从其他数据结构(如numpy,list等)中构建
+    使用 tf.convert_to_tensor() / tf.cast() 的方式直接转换
+
+2. 使用tf相关接口进行构建
+    参阅API描述文档: https://www.tensorflow.org/api_docs/python/tf
+
+    zeros
+    zeros_like
+    ones
+    ones_like
+    eye
+    fill
+
+3. random
+    tf.random.normal(
+        shape,
+        mean=0.0,
+        stddev=1.0,
+        dtype=tf.dtypes.float32,
+        seed=None,
+        name=None
+    )
+
+    正态分布随机数:
+    tf.random.truncated_normal(
+        shape,
+        mean=0.0,
+        stddev=1.0,
+        dtype=tf.dtypes.float32,
+        seed=None,
+        name=None
+    )
+
+    均匀分布随机数:
+    tf.random.stateless_uniform(
+        shape,
+        seed,
+        minval=0,
+        maxval=None,
+        dtype=tf.dtypes.float32,
+        name=None,
+        alg='auto_select'
+    )
+
+4. constant
+    tf.constant(
+        value, dtype=None, shape=None, name='Const'
+    )
