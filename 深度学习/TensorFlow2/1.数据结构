@@ -1,0 +1,21 @@
+tf.Tensor
+    scalar: 1.1
+    vector: [1.1], [1.1,2.2,....]
+    matrix: [[1, 2], [3, 4], [5, 6]]
+
+支持的类型:
+    int,float,double,bools,string
+
+tf中的数据类型为Tensor
+
+tf.is_tensor(xxx): 可判断是否为Tensor类型
+
+数据类型及转换
+    tensor.dtype: 获取其数据类型
+    tf.convert_to_tensor(xx) / tf.cast(xx): 从其他的数据类型转换成TenSor类型
+
+    转numpy数据
+    xxx.numpy()
+    int(xxx)
+    float(xxx)
+
