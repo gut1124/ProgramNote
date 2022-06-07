@@ -17,7 +17,7 @@ private void LoadFileButton_Click(object sender, RoutedEventArgs e)
 
     if (ofd.ShowDialog() == true)
     {
-        //此处做你想做的事 ...=ofd.SafeFileName; 
+        //此处做你想做的事 ...=ofd.FileName; 
     }
 
 }
