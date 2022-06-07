@@ -3,7 +3,7 @@
 
 TensorFlow-GPU的前置条件:
     1) anaconda
-    2) NVIDIA® 软件
+    2) NVIDIA® 软件(仅CPU时忽略)
 
 1. 安装 anaconda
     https://www.anaconda.com/
@@ -56,6 +56,8 @@ TensorFlow-GPU的前置条件:
     C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.2\include
 
 3. 安装 TensorFlow
+
+    注意下载时需要关闭代理
 
     低版本:
     CPU版本: pip install tensorflow
