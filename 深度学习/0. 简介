@@ -1,0 +1,22 @@
+
+基本概念:
+    训练集,特征值,监督学习,非监督学习,半监督学习,分类,回归
+
+
+算法及类型:
+    监督学习 Supervised Learning
+        分类 Classification
+            决策树 Decision Tree
+            临近取样 Nearest Neighbor
+            支持向量机 Support Vector Machine(SVM)
+            神经网络 Neural Network
+        回归 Regression
+            线性回归 Linear Regression
+            非线性回归 Non-Linear Regression
+    非监督学习 Unsupervised Learning
+            K-mean
+            hierarchical clustering
+
+深度学习(Deep Learning)
+    机器学习中延展的新领域,应用在视觉,自然语言处理及语音识别等领域.
+
