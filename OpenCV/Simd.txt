@@ -1,0 +1,52 @@
+
+simd类型:
+v_uint8
+v_int8
+v_uint16
+v_int16
+v_uint32
+v_int32
+v_uint64
+v_int64
+v_float32
+
+备注: xx表示:
+    u8 s8 u16 s16 u32 s32 f32 u64 s64 f64
+
+加载和存储:
+    构造: 从内存构造
+    创建: vx_setall_xx, vx_setzero_xx
+    从内存中加载: v_load, v_load_aligned, v_load_low, v_load_halves
+    通过值扩展的内存操作: v_load_expand, v_load_expand_q
+
+
+值重新排序:
+    交错,去交错: v_load_deinterleave, v_store_interleave
+    展开: v_expand, v_expand_low, v_expand_high
+    包: v_pack, v_pack_u, v_pack_b, v_rshr_pack, v_rshr_pack_u, v_pack_store, v_pack_u_store, v_rshr_pack_store, v_rshr_pack_u_store
+    重组: v_zip, v_recombine, v_combine_low, v_combine_high
+    反向: v_reverse
+    提取: v_extract
+
+运算:
+    算术: +, -, *, /, v_mul_expand
+    非饱和算法: v_add_wrap, v_sub_wrap
+    按位移位: <<, >>, v_shl, v_shr
+    按位逻辑: &, |, ^, ~
+    比较: >, >=, <, <=, ==, !=
+    最大/最小: v_min, v_max
+
+减少和掩盖:
+    减少: v_reduce_min, v_reduce_max, v_reduce_sum, v_popcount
+    掩码: v_signmask, v_check_all, v_check_any, v_select
+
+其他常用:
+    v_sqrt, v_invsqrt, v_magnitude, v_sqr_magnitude, v_abs, v_absdiff, v_absdiffs
+
+转换:
+    舍入: v_round, v_floor, v_ceil, v_trunc
+    转浮点数: v_cvt_f32, v_cvt_f64
+    重新解释: v_reinterpret_as_xxx
+
+矩阵运算:
+    v_dotprod, v_dotprod_fast, v_dotprod_expand, v_dotprod_expand_fast, v_matmul, v_transpose4x4
